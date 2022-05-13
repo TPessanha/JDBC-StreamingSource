@@ -7,6 +7,18 @@
     <groupId>personal.tdpessanha</groupId>
     <artifactId>jdbc-streaming-source</artifactId>
     <version>1.0-alpha</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <packaging>jar</packaging>
 
@@ -21,6 +33,9 @@
         <jackson.version>2.13.2</jackson.version>
         <scalamock.version>5.2.0</scalamock.version>
         <typesafe.version>3.9.4</typesafe.version>
+        <h2.version>2.1.212</h2.version>
+        <hadoop.minicluster.version>3.2.2</hadoop.minicluster.version>
+        <mrpowers.spark.comparator.version>1.3.0</mrpowers.spark.comparator.version>
     </properties>
 
     <repositories>
@@ -94,6 +109,8 @@
 
         <!-- Test dependencies -->
 
+        <!-- Scala tests -->
+
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.major.version}</artifactId>
@@ -107,6 +124,31 @@
             <version>${scalamock.version}</version>
         </dependency>
 
+        <!-- HDFS mini cluster -->
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-minicluster</artifactId>
+            <version>${hadoop.minicluster.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- H2 memory database -->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Dataframe comparator -->
+        <dependency>
+            <groupId>com.github.mrpowers</groupId>
+            <artifactId>spark-fast-tests_${scala.major.version}</artifactId>
+            <version>${mrpowers.spark.comparator.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <developers>
